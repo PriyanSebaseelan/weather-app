@@ -1,8 +1,11 @@
 :root {
     --bg-color1: #1a1a1a;
-    --bg-color2: #2a2b2d;   
-    --btn-color1: #fff;
-    --btn-color2: #31ab9e;
+    --bg-color2: #3a3b3d;  
+
+    --white: #e0e0e0;
+    --turquoise: #31ab9e;
+
+    --text-color1: #999;
 }
 
 * {
@@ -14,10 +17,9 @@
 body {
     min-height: 100vh;
     background-color: var(--bg-color1);
-    color: var(--btn-color1);
+    color: var(--white);
     font-family: sans-serif;
     padding: 0 15px;
-
 }
 
 .header {
@@ -32,14 +34,31 @@ body {
 
     & #city_input {
         background-color: var(--bg-color2);
-        border: none;
+        border: 2px solid transparent;
         padding: 12px;
         font-size: 16px;
         border-radius: 25px;
-        color: var(--btn-color1);
+        color: var(--white);
+        transition: border 0.3s ease, box-shadow 0.3s ease;
+        
         &:focus {
             outline: none;
         }
+    }
+
+    #city_input:focus {
+        border-color: var(--turquoise);
+        box-shadow: 0 0 10px rgba(49, 171, 158, 0.5);
+    }
+
+    #locationBtn, #searchBtn {
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: box-shadow 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    #locationBtn:hover, #searchBtn:hover {
+        box-shadow: 0 6px 15px rgba(49, 171, 158, 0.8);
+        transition: background-color 0.3s ease, box-shadow 0.3s ease;
     }
 
     & #searchBtn {
@@ -47,8 +66,9 @@ body {
         font-size: 16px;
         padding: 12px;
         border-radius: 25px;
-        background-color: var(--btn-color1);
+        background-color: var(--white);
         cursor: pointer;
+        color: var(--bg-color1);
     }
 
     & #locationBtn {
@@ -56,14 +76,88 @@ body {
         font-size: 16px;
         padding: 12px;
         border-radius: 25px;
-        background-color: var(--btn-color2);
+        background: linear-gradient(45deg, #31ab9e, #28a197);
         cursor: pointer;
+        color: var(--white);
+    }
+
+    #locationBtn:hover {
+        background: linear-gradient(45deg, #28a197, #26a08b);
+        box-shadow: 0 6px 15px rgba(49, 171, 158, 0.8);
+        transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    #searchBtn:hover {
+        background-color: #dcdcdc;
+        box-shadow: 0 6px 15px rgba(255, 255, 255, 0.8);
+        transition: background-color 0.3s ease, box-shadow 0.3s ease;
     }
 }
 
 .card {
     background-color: var(--bg-color2);
+    background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 25%, 
+    transparent 25%, transparent 50%, rgba(255, 255, 255, 0.05) 50%, 
+    rgba(255, 255, 255, 0.05) 75%, transparent 75%, transparent);
+    background-size: 40px 40px;
     padding: 15px;
-    border-radius: 15px;
-    margin-bottom: 15px;
+    border-radius: 13px;
+    margin-bottom: 13px;
+
+    & p {
+        font-size: 14px;
+        color: #999;
+    }
+
+    & h2 {
+        font-size: 32px;
+        font-weight: 500;
+        padding-bottom: 13px;
+    }
+}
+
+.card:hover {
+    background-color: #2e2f31;
+    transition: background-color 0.3s ease;
+}
+
+.weather-data {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+
+    & .weather-left {
+        grid-column: span 1;
+
+        & .current-weather {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            & h2 {
+                margin: 7px 0;
+            }
+
+            & p {
+                color: var(--white);
+            }
+        }
+
+        & .card-footer p {
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+
+        & .forecast-item {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            place-items: center;
+            margin-bottom: 15px;
+
+            & .icon-wrapper {
+                display: flex;
+                align-items: center;
+            }
+        }
+    }
 }
