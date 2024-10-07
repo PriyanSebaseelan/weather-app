@@ -211,7 +211,7 @@ hr {
                         background-color: var(--aqi-3);
                     }
 
-                    & .aqi-4 {
+                    &.aqi-4 {
                         background-color: var(--aqi-4);
                     }
 
