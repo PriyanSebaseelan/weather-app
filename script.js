@@ -215,12 +215,15 @@ function getCityCoordinates() {
     cityInput.value = '';
     if(!cityName) return;
 
-    let GEOCODING_API_URL = `http://api.openweathermap.org/geo/1.0/direct?q=${encodeURIComponent(cityName)}&
-    limit=1&appid=${api_key}`;
+    let GEOCODING_API_URL = `http://api.openweathermap.org/geo/1.0/direct?q=${encodeURIComponent(cityName)}&limit=1&appid=${api_key}`;
 
     fetch(GEOCODING_API_URL)
         .then(res => res.json())
         .then(data => {
+            if (data.length === 0) {
+                alert(`No coordinates found for ${cityName}`);
+                return;
+            }
             let { name, lat, lon, country, state } = data[0];
             getWeatherDetails(name, lat, lon, country, state);
         })
